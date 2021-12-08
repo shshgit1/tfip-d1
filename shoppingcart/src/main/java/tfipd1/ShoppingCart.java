@@ -2,6 +2,7 @@ package tfipd1;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 
@@ -10,6 +11,7 @@ public class ShoppingCart {
    
    public static void main(String[] args) {
     ShoppingCart abc=new ShoppingCart();
+    
     abc.Welcome();
    }
       public void Welcome()

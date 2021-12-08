@@ -3,18 +3,47 @@ package tfipd1;
 import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ShoppingCartScan {
-     ArrayList<String> fruits=new ArrayList<>();
+     List<String> fruits=new ArrayList<>();
      String user;
      Boolean isloggedin=false;
 
     public static void main(String[] args) throws IOException {
         ShoppingCartScan scart=new ShoppingCartScan();
-        
-        scart.Welcome();
+             
+        scart.checklogin();
             }
+           
+            
+                public void checklogin() throws IOException{
+                    
+                    if (isloggedin==true)
+                    {
+                        Welcome();
+                    }
+                    else
+                    { 
+                        Console inp=System.console();
+    String input=inp.readLine("Welcome to your shopping cart.please log in:");
+    Scanner scann=new Scanner(input);
+    String scannx=scann.next();
+                        
+                        if (scannx.equals("login")){
+                            String uname=input.substring(6);
+                             user=uname;
+                             System.out.println("Login complete.");
+                             isloggedin=true;
+                            checklogin();
+                            }   
+                            else
+                            checklogin();                           
+                        }
+                           
+            }
+        
     public void Welcome() throws IOException  
     {
     
@@ -24,20 +53,8 @@ public class ShoppingCartScan {
     Scanner scann=new Scanner(input);
     String scannx=scann.next();
 
-
-    if (scannx.equals("login")){
-String uname=input.substring(6);
- user=uname;
- System.out.println("Login complete.");
-Welcome();
-
-    } 
-
     if (input.equals("save")){
-        ScCartCom writethis = new ScCartCom(user, fruits);
-writethis.Writer();
-System.out.println("Cart has been saved.");
-Welcome();
+       this.saver();
     }
     
        switch (scannx)
@@ -76,18 +93,20 @@ Welcome();
                         System.out.println(jjj[x]+" added to cart");
                     }
               }      
+              this.saver();
             Welcome();
         }
             if (fruits.contains(addinput))
             {
                 System.out.println("you already added "+addinput);
+                this.saver();
                 Welcome();
             }
             else
             {
                 fruits.add(addinput);
                 System.out.println(addinput+" added to cart");
-           }
+           }this.saver();
               Welcome();
         }
         
@@ -111,7 +130,7 @@ Welcome();
             else
             {
                 System.out.println(delinput + " does not exist");
-            }
+            }this.saver();
             Welcome();
             }
     
@@ -131,30 +150,33 @@ Welcome();
                     fruits.remove(delstr[x]);
                System.out.println(delstr[x] +" deleted from cart");
                 }
-            }
+            }this.saver();
             Welcome();
         }
         System.out.println("Your cart does not have "+delinput);
+        this.saver();
         Welcome();
     }
     else
     {
     fruits.remove(delinput);
 System.out.println(delinput+" deleted from cart");
+this.saver();
 Welcome();
     } 
 }
     
     public void listfruits(String input) throws IOException
     {
-        if (fruits.size()<1)
-        {
-            System.out.println("You have nothing in your cart.");
-        }
-        for (int x=0;x<fruits.size();x++)
-        {
-        System.out.println((x+1) +". " +fruits.get(x));
-        }
+        ScCartCom listthis = new ScCartCom(user, fruits);
+        listthis.listfr();
         Welcome();
-    }
+           } 
+           public void saver() throws IOException
+           {
+            ScCartCom writethis = new ScCartCom(user, fruits);
+            writethis.Writer();
+            System.out.println("Cart has been saved.");
+            Welcome();
+           }
   }

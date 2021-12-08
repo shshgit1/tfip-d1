@@ -47,7 +47,7 @@ public class ShoppingCartScan {
     public void Welcome() throws IOException, InterruptedException  
     {
     
-    System.out.println("Please use only the following commands: add, delete, list, login.");
+    System.out.println("Please use only the following commands: add, delete, list, logout.");
     Console inp=System.console();
     String input=inp.readLine("Welcome to your shopping cart.");
     Scanner scann=new Scanner(input);

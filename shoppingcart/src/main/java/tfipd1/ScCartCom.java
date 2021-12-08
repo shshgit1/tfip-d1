@@ -5,21 +5,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import javax.management.AttributeList;
 
 public class ScCartCom {
     public String usname="empty";
 List<String> ffrr;
-List<String>ffrr1;
+//List<String>ffrr1;
 String fwn;
-
-
-
-
 
     public ScCartCom (String username, List<String> frfr)
     {
@@ -44,21 +37,18 @@ public void listfr() throws IOException
 
 if (checkfile.exists())
 {
-    ffrr1=Files.readAllLines(Paths.get(fwn));
-    ffrr=ffrr1;
+    ffrr=Files.readAllLines(Paths.get(fwn));
+    
     for (int x=0;x<ffrr.size();x++)
     {
         System.out.println(ffrr.get(x));
     }
 }
-       else if (ffrr.size()<1)
-       
+if (ffrr.size()==0)      
         {
             System.out.println("You have nothing in your cart.");
         }
-        else if (ffrr.size()>0)
-        for (int x=0;x<ffrr.size();x++)
-    {  System.out.println((x+1) +". " +ffrr.get(x)); }
+        
     
     }
     

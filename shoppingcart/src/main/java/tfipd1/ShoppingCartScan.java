@@ -11,14 +11,14 @@ public class ShoppingCartScan {
      String user;
      Boolean isloggedin=false;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         ShoppingCartScan scart=new ShoppingCartScan();
              
         scart.checklogin();
             }
            
             
-                public void checklogin() throws IOException{
+                public void checklogin() throws IOException, InterruptedException{
                     
                     if (isloggedin==true)
                     {
@@ -44,7 +44,7 @@ public class ShoppingCartScan {
                            
             }
         
-    public void Welcome() throws IOException  
+    public void Welcome() throws IOException, InterruptedException  
     {
     
     System.out.println("Please use only the following commands: add, delete, list, login.");
@@ -68,14 +68,19 @@ public class ShoppingCartScan {
         case "delete":
         this.delete(input);
         break;
+        case "logout":
+        System.out.println("You have been logged out.");
+        Thread.sleep(1000);
+        isloggedin=false;
+        checklogin();
         default:
         System.out.println("wrong input. Try again");
-        Welcome();
+      
        }
         
 
     }
-    public void add(String input) throws IOException{
+    public void add(String input) throws IOException, InterruptedException{
         {   
             String addinput= new String(input).substring(4);
             if (addinput.contains(","))
@@ -111,7 +116,7 @@ public class ShoppingCartScan {
         }
         
             }
-    public void delete(String input) throws IOException
+    public void delete(String input) throws IOException, InterruptedException
 {
     String delinput=new String(input).substring(7);
     String delnum=new String(input).substring(7,8);
@@ -166,13 +171,13 @@ Welcome();
     } 
 }
     
-    public void listfruits(String input) throws IOException
+    public void listfruits(String input) throws IOException, InterruptedException
     {
         ScCartCom listthis = new ScCartCom(user, fruits);
         listthis.listfr();
         Welcome();
            } 
-           public void saver() throws IOException
+           public void saver() throws IOException, InterruptedException
            {
             ScCartCom writethis = new ScCartCom(user, fruits);
             writethis.Writer();

@@ -5,7 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+
+import javax.management.AttributeList;
 
 public class ScCartCom {
     public String usname="empty";
@@ -14,19 +18,22 @@ List<String>ffrr1;
 String fwn;
 
 
+
+
+
     public ScCartCom (String username, List<String> frfr)
     {
         
 this.usname=username;
 this.ffrr=frfr;
-fwn= new String("C:\\Users\\sha\\Documents\\tfip-java-assignments\\tfip-d3\\tfip-d1\\shoppingcart\\src\\main\\java\\tfipd1\\"+usname+".db");
+fwn= new String("C:\\Users\\sha\\Documents\\tfip-java-assignments\\tfip-d3\\tfip-d1\\shoppingcart\\src\\main\\java\\tfipd1\\db\\"+usname+".db");
     }
     public void Writer() throws IOException{
         
         FileWriter fw=new FileWriter(fwn);
         for (int x=0;x<ffrr.size();x++)
         {
-        fw.write(ffrr.get(x)+"\n");
+        fw.write((x+1)+". "+ffrr.get(x)+"\n");
                    }
 fw.close();
 }
@@ -41,7 +48,7 @@ if (checkfile.exists())
     ffrr=ffrr1;
     for (int x=0;x<ffrr.size();x++)
     {
-        System.out.println((x+1) +". " +ffrr.get(x));
+        System.out.println(ffrr.get(x));
     }
 }
        else if (ffrr.size()<1)

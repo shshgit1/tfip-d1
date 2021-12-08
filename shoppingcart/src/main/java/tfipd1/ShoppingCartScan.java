@@ -28,13 +28,16 @@ public class ShoppingCartScan {
     if (scannx.equals("login")){
 String uname=input.substring(6);
  user=uname;
-
+ System.out.println("Login complete.");
+Welcome();
 
     } 
 
     if (input.equals("save")){
         ScCartCom writethis = new ScCartCom(user, fruits);
 writethis.Writer();
+System.out.println("Cart has been saved.");
+Welcome();
     }
     
        switch (scannx)
